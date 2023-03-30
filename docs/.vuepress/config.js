@@ -6,125 +6,101 @@ module.exports = {
       lineNumbers: true,
     },
     themeConfig: {
-      sidebarDepth: 3,
+      // sidebarDepth: 2,
       editLinks: true,
       displayAllHeaders: false,
       docsDir: 'docs',
       editLinkText: '在 GitHub 上编辑此页',
       lastUpdated: 'Last Updated', // string | boolean
       nav:[
-        { text: '前端', 
-        items: [
-          { text: 'html/css', link: '/front-end/html-css/box-sizing' },
-          { text: 'js', link: '/front-end/js/execute-context' },
-          { text: 'vue', link: '/front-end/vue/vue' },
-          { text: '浏览器', link: '/front-end/network/browser' },
-          { text: '构建', link: '/front-end/build/babel' },
-        ]
-      },
+        { text: '前端', link: '/front-end/'},
         { text: 'git', link: '/git/git' },
         { text: 'GitHub', link: 'https://github.com/2017coding' }      
       ],
       sidebar:{
-        '/front-end/html-css/': [
+        '/front-end/': getFrontEndSidebar(),
+        '/node/': [
           {
-            title: 'html/css',
+            title: 'node',
             collapsable: false,
             children: [
-              'box-sizing',
-              'css-layout',
+              'node',
             ]
           },
         ],
-        '/front-end/js/': [
+        '/git/': [
           {
-            title: 'js',
+            title: 'git',
             collapsable: false,
             children: [
-              'execute-context',
-              'this',
-              'prototype',
-              'closure',
-              'trash-recycling',
+              'git',
             ]
-          }
+          },
         ],
-        '/front-end/vue/': [
-          {
-            title: 'vue',
-            collapsable: false,
-            children: [
-              'http',
-            ]
-          }
-        ],
-        '/front-end/network/': [
-            {
-              title: '浏览器',
-              collapsable: false,
-              children: [
-                'browser',
-                'sandbox',
-                'pageParse',
-                'pageRender',
-              ]
-            },
-            {
-              title: '网络',
-              collapsable: false,
-              children: [
-                'http',
-                'https',
-                'crossDomain',
-                'security'
-              ]
-            },
-            {
-              title: '性能优化',
-              collapsable: false,
-              children: [
-                'http',
-              ]
-            }
-          ],
-          '/front-end/build/': [
-            {
-              title: '构建',
-              collapsable: false,
-              children: [
-                'babel',
-                'npm-yarn',
-                'test',
-              ]
-            }
-          ],
-          '/node/': [
-            {
-              title: 'node',
-              collapsable: false,
-              children: [
-                'node',
-              ]
-            },
-          ],
-          '/git/': [
-            {
-              title: 'git',
-              collapsable: false,
-              children: [
-                'git',
-              ]
-            },
-          ],
-          '/blog/': [
-            {
-              title: 'blog',
-              collapsable: false,
-              children: [
-                'http',
-              ]
-            }
-          ]
       },
     },
+  }
+
+
+  function getFrontEndSidebar () {
+    return [
+      {
+        title: '',
+        path: '/',
+        collapsable: false,
+        children: [
+          ''
+        ]
+      },
+      {
+        title: 'html-css',
+        collapsable: false,
+        children: [
+          'html-css/box-sizing',
+          'html-css/css-layout',
+        ]
+      },
+      {
+        title: 'js',
+        collapsable: false,
+        children: [
+          'js/execute-context',
+          'js/this',
+          'js/prototype',
+          'js/closure',
+          'js/trash-recycling',
+        ]
+      },
+      {
+        title: 'vue',
+        collapsable: false,
+        children: [
+          'vue/vnode',
+        ]
+      },
+      {
+        title: '浏览器和网络',
+        collapsable: false,
+        children: [
+          'network/browser',
+          'network/sandbox',
+          'network/pageParse',
+          'network/pageRender',
+          'network/http',
+          'network/https',
+          'network/crossDomain',
+          'network/security',
+        ]
+      },
+      {
+        title: '工程化',
+        collapsable: false,
+        children: [
+          'build/package-manage/npm',
+          'build/package-manage/package-manage-contrast',
+          'build/cli',
+          'build/babel',
+        ]
+      }
+    ]
   }

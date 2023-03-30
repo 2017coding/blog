@@ -25,6 +25,6 @@
 
 当 **box-sizing: content-box**时，盒子模型为 **标准盒子模型**，当**box-sizing: border-box**时，这种盒子模型称为**IE盒子模型**。
 
-## BFC
+<!-- ## BFC
 
-## IFC
+## IFC -->
