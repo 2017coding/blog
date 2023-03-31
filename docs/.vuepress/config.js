@@ -53,11 +53,11 @@ module.exports = {
         ]
       },
       {
-        title: 'html-css',
+        title: 'base',
         collapsable: false,
         children: [
-          'html-css/box-sizing',
-          'html-css/css-layout',
+          'base/box-sizing',
+          'base/css-layout',
         ]
       },
       {
