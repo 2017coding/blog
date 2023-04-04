@@ -11,7 +11,7 @@ module.exports = {
       displayAllHeaders: false,
       docsDir: 'docs',
       editLinkText: '在 GitHub 上编辑此页',
-      lastUpdated: 'Last Updated', // string | boolean
+      lastUpdated: '更新时间', // string | boolean
       nav:[
         { text: '前端', link: '/front-end/'},
         { text: 'git', link: '/git/git' },
@@ -38,6 +38,17 @@ module.exports = {
           },
         ],
       },
+      plugins: [
+        [
+          '@vuepress/last-updated',
+          {
+            transformer: (timestamp) => {
+              const moment = require('moment')
+              return moment(timestamp).format('YYYY/MM/DD h:mm:ss')
+            }
+          }
+        ]
+      ]
     },
   }
 
@@ -75,6 +86,8 @@ module.exports = {
         title: 'vue',
         collapsable: false,
         children: [
+          'vue/reactive',
+          'vue/render',
           'vue/vnode',
         ]
       },

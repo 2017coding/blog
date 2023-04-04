@@ -1,3 +1,4 @@
+获取到options里面的computed
 1. 循环遍历每一个 computed key
 2. 判断当前的计算属性是方法还是对象，对象则说明用户自己写了getter和setter
 3. 如果用户自己写了，则对用户的get方式进行包装，set方法依旧使用用户的
