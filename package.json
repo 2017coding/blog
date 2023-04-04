@@ -11,7 +11,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@vuepress/client": "2.0.0-beta.61",
     "moment": "^2.29.4",
-    "vuepress": "^1.9.8"
+    "vue": "^3.2.47",
+    "vuepress": "2.0.0-beta.61",
+    "vuepress-plugin-anchor-right": "^0.0.1-beta.17"
   }
 }
