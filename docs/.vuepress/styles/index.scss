@@ -3,12 +3,10 @@
     width: 5px;
   }
   // 滚动条轨道
-  &::-webkit-scrollbar-track {
-    // border-radius: 20px;
-  }
+  // &::-webkit-scrollbar-track {
+  // }
   // 小滑块
   &::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    // background-color: var(--c-border);
   }
 }
