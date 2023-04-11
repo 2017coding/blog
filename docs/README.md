@@ -3,9 +3,9 @@ home: true
 heroImage: /logo.jpeg
 heroText: 欢迎来到lyh的blog
 tagline: 持续学习，持续成长
-actions: 
+actions:
   - text: 去看看 →
-    link: /front-end/
+    link: /front-end/knowledge/
     type: primary
 features:
 - title: 记录
