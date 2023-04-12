@@ -484,10 +484,24 @@ export function popTarget () {
 }
 ```
 - 初始化设置了一个唯一的id，设置了一个subs订阅列表
-- addSub：每次调用该方法，会往里面添加一条watcher
-- removeSub：删除一条watcher
-- depend：如果当前dep的target存在，调用它的addDep方法
-- notify：开发环境下，如果不是异步需要排序，同时会调用每一个watcher的update方法
+- addSub：
+  -做了什么：每次调用该方法，会往里面添加一条watcher
+  -触发时机：调用watcher的**addDep**
+- removeSub：
+  -做了什么：删除一条watcher
+  -触发时机：
+    1. watcher调用**teardown**
+    2. watcher调用**cleanupDeps**
+- depend：
+  -做了什么：如果当前dep的target存在，调用它的addDep方法
+  -触发时机：
+    1. watcher调用**depend**
+    2. Object.defineProperty的**get**
+- notify：
+  -做了什么：开发环境下，如果不是异步需要排序，同时会调用每一个watcher的update方法
+  -触发时机：数据发生改变的时候
+    1. Object.defineProperty的**set**
+    2. 调用 **$del**
 
 从这些代码可以看出，dep其实是对watcher的管理，负责收集watcher以及派发watcher的更新，所以要弄明白问题所在我们还需要看water的实现。
 
@@ -724,14 +738,26 @@ export default class Watcher {
   10. 设置this.getter方法，
   11. 设置watch的value
 - get：
-  1. 调用**pushTarget(this)**，这里主要为了将**Dep.target** 赋值为当前的渲染 watcher 并压入栈中
-  2. 执行**getter**方法获取到value，这这个过程中会对 vm 上的数据访问，触发了数据对象的 getter，getter里面会触发Dep.depend，进行依赖收集
-  3. **this.deep**为true，递归去访问 value，触发它所有子项的 getter
-  4. 调用**popTarget()**，把 Dep.target 恢复成上一个状态，因为当前 vm 的数据依赖收集已经完成，那么对应的渲染Dep.target 也需要改变。
-  5. 调用 **cleanupDeps** 方法清除依赖
-- addDep：当前没有被监听，则把当前dep添加到队列
+  -做了什么：
+    1. 调用**pushTarget(this)**，这里主要为了将**Dep.target** 赋值为当前的渲染 watcher 并压入栈中
+    2. 执行**getter**方法获取到value，这这个过程中会对 vm 上的数据访问，触发了数据对象的 getter，getter里面会触发Dep.depend，进行依赖收集
+    3. **this.deep**为true，递归去访问 value，触发它所有子项的 getter
+    4. 调用**popTarget()**，把 Dep.target 恢复成上一个状态，因为当前 vm 的数据依赖收集已经完成，那么对应的渲染Dep.target 也需要改变。
+    5. 调用 **cleanupDeps** 方法清除依赖
+  -触发时机：
+    1. watcher初始化的时候
+    2. update后
+    3. computed求值的时候
+- addDep：
+  -做了什么：判断new dep 和 dep是否已经存在当前watcher，不存在则添加进去
+  -触发时机：
+    在 Object.defineProperty的getter中添加依赖，代码在**src/core/observer/index.js**中，这里会触发**dep**的depend方法.
+    该方法调用**Dep.target.addDep**，也就是watcher的addDep方法
 - cleanupDeps：
-  -做了什么：清除dep
+  -做了什么：
+    1. 清除当前订阅
+    2. 把new dep和dep交换
+    3. 清除new dep
   -触发时机：调用watcher的get中
 - update：
   -做了什么
@@ -756,9 +782,136 @@ export default class Watcher {
       1. **$destroy**的 destroy，beforeDestroy后，destroyed前，代码在**src/core/instance/lifecycle.js**
       2. **$watch**的unwatchFn，但是没有调用场景，代码在**src/core/instance/state.js**
 
+### computed
+computed的实现逻辑主要在**src/core/instance/state.js**中，主要看下面几个函数：
+```
+function initComputed (vm: Component, computed: Object) {
+  // $flow-disable-line
+  const watchers = vm._computedWatchers = Object.create(null)
+  // computed properties are just getters during SSR
+  const isSSR = isServerRendering()
+
+  for (const key in computed) {
+    const userDef = computed[key]
+    const getter = typeof userDef === 'function' ? userDef : userDef.get
+    if (process.env.NODE_ENV !== 'production' && getter == null) {
+      warn(
+        `Getter is missing for computed property "${key}".`,
+        vm
+      )
+    }
+
+    if (!isSSR) {
+      // create internal watcher for the computed property.
+      watchers[key] = new Watcher(
+        vm,
+        getter || noop,
+        noop,
+        computedWatcherOptions
+      )
+    }
+
+    // component-defined computed properties are already defined on the
+    // component prototype. We only need to define computed properties defined
+    // at instantiation here.
+    if (!(key in vm)) {
+      defineComputed(vm, key, userDef)
+    } else if (process.env.NODE_ENV !== 'production') {
+      if (key in vm.$data) {
+        warn(`The computed property "${key}" is already defined in data.`, vm)
+      } else if (vm.$options.props && key in vm.$options.props) {
+        warn(`The computed property "${key}" is already defined as a prop.`, vm)
+      } else if (vm.$options.methods && key in vm.$options.methods) {
+        warn(`The computed property "${key}" is already defined as a method.`, vm)
+      }
+    }
+  }
+}
+
+export function defineComputed (
+  target: any,
+  key: string,
+  userDef: Object | Function
+) {
+  const shouldCache = !isServerRendering()
+  if (typeof userDef === 'function') {
+    sharedPropertyDefinition.get = shouldCache
+      ? createComputedGetter(key)
+      : createGetterInvoker(userDef)
+    sharedPropertyDefinition.set = noop
+  } else {
+    sharedPropertyDefinition.get = userDef.get
+      ? shouldCache && userDef.cache !== false
+        ? createComputedGetter(key)
+        : createGetterInvoker(userDef.get)
+      : noop
+    sharedPropertyDefinition.set = userDef.set || noop
+  }
+  if (process.env.NODE_ENV !== 'production' &&
+      sharedPropertyDefinition.set === noop) {
+    sharedPropertyDefinition.set = function () {
+      warn(
+        `Computed property "${key}" was assigned to but it has no setter.`,
+        this
+      )
+    }
+  }
+  Object.defineProperty(target, key, sharedPropertyDefinition)
+}
+
+function createComputedGetter (key) {
+  return function computedGetter () {
+    const watcher = this._computedWatchers && this._computedWatchers[key]
+    if (watcher) {
+      if (watcher.dirty) {
+        watcher.evaluate()
+      }
+      if (Dep.target) {
+        watcher.depend()
+      }
+      return watcher.value
+    }
+  }
+}
+```
+- initComputed
+  1. 初始化vm._computedWatchers
+  2. 得到computed的get方法
+  3. watch监听computed的值
+  4. 调用**defineComputed**
+
+- defineComputed
+  1. 设置当前key的get set方法，get方法根据用户当前设置的get或者调用 **createComputedGetter**
+  2. 调用**Object.defineProperty**监听当前值变化
+
+- createComputedGetter
+  1. 数据更新的时候，触发watcher.dirty为true，调用watcher的evaluate重置dirty，并重新计算watcher的value
+  2. 初始化的时候添加对当前数据的订阅
+
+通过上面可以发现，computed的实现主要包括几步：
+1. 初始化一个懒加载的watcher监听器
+2. 在computed的get中设置一个watcher的求值逻辑，返回最新的数据
+
+当computed里面计算的响应式数据发生改变后，会触发dep的notice方法，这个时候会通知给所有订阅数据，从而去执行watcher的update方法，设置watcher.dirty为true，这个时候重新获取computed就会得到最新的值。
 
 
+## 整个流程
 
+1. observe，主要实现了对数据的监听。
+
+  这个过程主要做了：
+  - get的时候通过dep给所有数据添加依赖，通过dep的depend
+  - set的时候通知dep数据变化，通过dep的notify
+
+2. dep，主要维护了watcher的订阅。
+
+  初始化的时候，当watcher初始化的时候设置dep.target，同时获取value, 这个时候会触发当前被监听数据的getter方法从而调用dep的depend。
+  dep的depend通过调用当前watcher的addDep方法，设置了watcher中的new Dep相关数据，并且调用了dep的addSub将当前watcher添加到了订阅列表中。
+  数据更新的时候，数据的setter会调用dep的notice，区调用watcher的update方法从而触发cb。
+
+  总结来说，就是数据发生getter的时候，往订阅列表里面添加一条对当前数据的watcher，数据发生setter的时候通知对应的数据
+
+3. watcher，主要做的是observe和dep之间的桥梁，初始化获取watcher的value触发getter，提供给dep添加订阅的方法，提供给dep调用的update方法，自身清除订阅的方法。
 
 
 

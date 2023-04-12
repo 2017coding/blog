@@ -31,7 +31,7 @@ export default defineUserConfig({
           { text: '知识点', link: '/front-end/knowledge/' },
           { text: 'Typescript', link: '/front-end/ts/' },
           { text: '浏览器和网络', link: '/front-end/network/' },
-          { text: '工程化', link: '/front-end/build/' },
+          { text: '工程化', link: '/front-end/build/module' },
         ]
       },
       { text: '后端',

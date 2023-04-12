@@ -34,10 +34,10 @@ export const knowledgeSidear = [
 export const tsSidebar = [
   {
     text: 'Typescript',
-    prefix: 'ts',
+    prefix: '',
     collapsable: false,
     children: [
-      'start.md',
+      'type',
     ]
   },
 ]
@@ -63,13 +63,31 @@ export const networkSidebar = [
 export const buildSidebar = [
   {
     text: '工程化',
-    prefix: 'build',
+    prefix: '',
     collapsable: false,
     children: [
-      'package-manage/npm',
-      'package-manage/package-manage-contrast',
+      'module',
       'cli',
       'babel',
+    ]
+  },
+  {
+    text: '包管理工具',
+    prefix: 'package-manage',
+    collapsable: false,
+    children: [
+      'npm',
+      'package-manage-contrast',
+    ]
+  },
+  {
+    text: 'webpack',
+    prefix: 'webpack',
+    collapsable: false,
+    children: [
+      'use',
+      'loader',
+      'plugin',
     ]
   }
 ]
@@ -86,6 +104,7 @@ export const vue2Sidebar = [
     prefix: '',
     // collapsable: false,
     children: [
+      'design',
       'reactive',
     ]
   },
