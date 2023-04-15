@@ -15,7 +15,7 @@ npm由三个不同的组件组成：
 ## package.json
 每个javascript项目都可以被当作npm软件包，并且通过package.json来描述项目和软件包的信息，所以package.json是工程化项目必要的一个部分。
 
-当使用**npm init**初始化javascript/Node.js项目的时候，会自动生成该文件：
+当使用`npm init`初始化javascript/Node.js项目的时候，会自动生成该文件：
 <img src="./image/package.png" style="width: 80%; padding: 20px;">
 
 主要属性：
@@ -64,13 +64,13 @@ package-lock.json旨在提交到代码库中，并用于各种目的：
 5. 删除包（npm unpublish <包名> -fource）
 
 删除时需要注意的问题:
-1. npm unpublish 只能删除**72小时以内**发布的包
-2. npm unpublish 删除的包，在**24小时内**不允许重复发布
+1. npm unpublish 只能删除`72小时以内`发布的包
+2. npm unpublish 删除的包，在`24小时内`不允许重复发布
 3. 发布包的时候需要慎重，尽量不要发布没有意义的包
 
 ### 发布常见问题
 
-1. 提示没有权限 
+1. 提示没有权限
 
 ```
 403 Forbidden - PUT https://registry.npmjs.org/package-name - You do not have permission to publish "package-name". Are you logged in as the correct user?

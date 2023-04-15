@@ -6,12 +6,12 @@
 
 示例，[点这个看该函数详细文档](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)：
 ```
-**
+`
 * obj 要定义的属性对象
 * prop 要定义或者修改的属性
 * descriptor 要定义或修改的属性描述符
 * @return obj(被传递给函数的对象)
-**
+`
 Object.defineProperty(obj, prop, descriptor)
 ```
 
@@ -104,7 +104,7 @@ data.newName = 'vue4.0' // 无consolo.log
 3. vue3.0 通过proxy解决该问题
 
 ### vue是怎么做的
-在 Vue 的初始化阶段，_init 方法执行的时候，会执行 initState(vm) 方法，代码在 **/src/core/instance/state.js**：
+在 Vue 的初始化阶段，_init 方法执行的时候，会执行 initState(vm) 方法，代码在 `/src/core/instance/state.js`：
 ```
 export function initState (vm: Component) {
   vm._watchers = []
@@ -122,7 +122,7 @@ export function initState (vm: Component) {
   }
 }
 ```
-这段初始化了**props**，**methods**，**data**，**computed**，**watch**，其中**props**，**data**是响应式数据，而**computed**，**watch**是基于**props**，**data**的改变才会触发，这里先主要分析**props**和**data**。
+这段初始化了`props`，`methods`，`data`，`computed`，`watch`，其中`props`，`data`是响应式数据，而`computed`，`watch`是基于`props`，`data`的改变才会触发，这里先主要分析`props`和`data`。
 
 #### initData
 ```
@@ -172,8 +172,8 @@ function initData (vm: Component) {
 1. 获取到data
 2. 当data不是对象需要设置为对象，在开发环境提示报错信息
 3. 遍历所有的data，如果key在props或者methods中存在提示报错信息
-4. 当属性的前缀不是 **$**或者**_**，将这个属性代理到**vm**实例上
-5. 通过 **observe**监听数据
+4. 当属性的前缀不是 `$`或者`_`，将这个属性代理到`vm`实例上
+5. 通过 `observe`监听数据
 
 #### initProps
 ```
@@ -228,15 +228,15 @@ function initProps (vm: Component, propsOptions: Object) {
 这里主要做了几个事情：
 1. 根结点关闭数据监听
 2. 循环props，里面做了这些事情
-    1. 设置 **$options._propKeys**
-    2. 验证**props**
-    3. 检测给定字符串是否是内置的属性，是的话提示不能作为**props**
-    4. 通过 **defineReactive** 监听数据
-    5. 当属性的前缀不是 **$**或者**_**，将这个属性代理到**vm**实例上
+    1. 设置 `$options._propKeys`
+    2. 验证`props`
+    3. 检测给定字符串是否是内置的属性，是的话提示不能作为`props`
+    4. 通过 `defineReactive` 监听数据
+    5. 当属性的前缀不是 `$`或者`_`，将这个属性代理到`vm`实例上
 3. 开启数据监听
 
 #### Observer，observe，defineReactive
-通过上面得到了，**props**和**data**是通过**defineReactive**和**observe**来做的，来看看这两个方法具体做了什么事情，代码在**src/core/observer/index.js**：
+通过上面得到了，`props`和`data`是通过`defineReactive`和`observe`来做的，来看看这两个方法具体做了什么事情，代码在`src/core/observer/index.js`：
 ##### observe
 ```
 export function observe (value: any, asRootData: ?boolean): Observer | void {
@@ -346,11 +346,11 @@ export function defineReactive (
       5. 调用dep.notify
 
 ##### Observer
-上面分析了**observe**和**defineReactive**，它们之前存在这样的关系：
+上面分析了`observe`和`defineReactive`，它们之前存在这样的关系：
 - 满足条件下，observe 返回已经 Observer的实例
 - 满足条件下，defineReactive 的 get set 调用 满足条件下，observe
 
-那我们来看看 **Observer** 又主要做了什么：
+那我们来看看 `Observer` 又主要做了什么：
 ```
 export class Observer {
   value: any;
@@ -374,7 +374,7 @@ export class Observer {
     }
   }
 
-  /**
+  /`
    * Walk through all properties and convert them into
    * getter/setters. This method should only be called when
    * value type is Object.
@@ -386,7 +386,7 @@ export class Observer {
     }
   }
 
-  /**
+  /`
    * Observe a list of Array items.
    */
   observeArray (items: Array<any>) {
@@ -406,8 +406,8 @@ export class Observer {
 
 ### 总结
 关于响应式数据，vue做了这些事情：
-1. 初始化执行initState 初始化 **data** 和 **props**
-2. 初始化**data**和**props**的时候调用了**observe**和**defineReactive**，不管调用的哪个最终都会调用**defineReactive**来完成数据的监听
+1. 初始化执行initState 初始化 `data` 和 `props`
+2. 初始化`data`和`props`的时候调用了`observe`和`defineReactive`，不管调用的哪个最终都会调用`defineReactive`来完成数据的监听
 
 但同时存在几个问题：
 1. vue中的data 和 props，除了getter的时候可以获取到，watch和computed也可以监听到，这是怎么实现的？
@@ -428,7 +428,7 @@ export class Observer {
 1. Observer：将Dep实例挂载到dep属性上，同时将自身实例添加到数据对象 value 的 __ob__ 属性上
 2. defineReactive：get的时候满足条件触发了 dep.depend() 方法，set的时候触发dep.notify()
 
-再来看看dep，看看它做了什么事情，代码在**src/core/observer/dep.js**：
+再来看看dep，看看它做了什么事情，代码在`src/core/observer/dep.js`：
 ```
 let uid = 0
 export default class Dep {
@@ -486,27 +486,27 @@ export function popTarget () {
 - 初始化设置了一个唯一的id，设置了一个subs订阅列表
 - addSub：
   -做了什么：每次调用该方法，会往里面添加一条watcher
-  -触发时机：调用watcher的**addDep**
+  -触发时机：调用watcher的`addDep`
 - removeSub：
   -做了什么：删除一条watcher
   -触发时机：
-    1. watcher调用**teardown**
-    2. watcher调用**cleanupDeps**
+    1. watcher调用`teardown`
+    2. watcher调用`cleanupDeps`
 - depend：
   -做了什么：如果当前dep的target存在，调用它的addDep方法
   -触发时机：
-    1. watcher调用**depend**
-    2. Object.defineProperty的**get**
+    1. watcher调用`depend`
+    2. Object.defineProperty的`get`
 - notify：
   -做了什么：开发环境下，如果不是异步需要排序，同时会调用每一个watcher的update方法
   -触发时机：数据发生改变的时候
-    1. Object.defineProperty的**set**
-    2. 调用 **$del**
+    1. Object.defineProperty的`set`
+    2. 调用 `$del`
 
 从这些代码可以看出，dep其实是对watcher的管理，负责收集watcher以及派发watcher的更新，所以要弄明白问题所在我们还需要看water的实现。
 
 ### watcher
-watcher源码在**src/core/observer/watcher.js**：
+watcher源码在`src/core/observer/watcher.js`：
 ```
 let uid = 0
 export default class Watcher {
@@ -581,7 +581,7 @@ export default class Watcher {
       : this.get()
   }
 
-  /**
+  /`
    * Evaluate the getter, and re-collect dependencies.
    */
   get () {
@@ -608,7 +608,7 @@ export default class Watcher {
     return value
   }
 
-  /**
+  /`
    * Add a dependency to this directive.
    */
   addDep (dep: Dep) {
@@ -622,7 +622,7 @@ export default class Watcher {
     }
   }
 
-  /**
+  /`
    * Clean up for dependency collection.
    */
   cleanupDeps () {
@@ -643,7 +643,7 @@ export default class Watcher {
     this.newDeps.length = 0
   }
 
-  /**
+  /`
    * Subscriber interface.
    * Will be called when a dependency changes.
    */
@@ -658,7 +658,7 @@ export default class Watcher {
     }
   }
 
-  /**
+  /`
    * Scheduler job interface.
    * Will be called by the scheduler.
    */
@@ -686,7 +686,7 @@ export default class Watcher {
     }
   }
 
-  /**
+  /`
    * Evaluate the value of the watcher.
    * This only gets called for lazy watchers.
    */
@@ -695,7 +695,7 @@ export default class Watcher {
     this.dirty = false
   }
 
-  /**
+  /`
    * Depend on all deps collected by this watcher.
    */
   depend () {
@@ -705,7 +705,7 @@ export default class Watcher {
     }
   }
 
-  /**
+  /`
    * Remove self from all dependencies' subscriber list.
    */
   teardown () {
@@ -732,18 +732,18 @@ export default class Watcher {
   4. 设置this.cb，当watch到数据改变的时候需要用到
   5. 设置this.id作为watcher的唯一标识
   6. 设置this.active为true，run和teardown方法中需要这个参数
-  7. 设置this.dirty，computed中需要该参数，代码在**src/core/instance/state.js**的**createComputedGetter**中
+  7. 设置this.dirty，computed中需要该参数，代码在`src/core/instance/state.js`的`createComputedGetter`中
   8. 设置this.deps 和 this.newDeps等dep相关参数
   9. 设置this.expression 主要用来开发环境的报错
   10. 设置this.getter方法，
   11. 设置watch的value
 - get：
   -做了什么：
-    1. 调用**pushTarget(this)**，这里主要为了将**Dep.target** 赋值为当前的渲染 watcher 并压入栈中
-    2. 执行**getter**方法获取到value，这这个过程中会对 vm 上的数据访问，触发了数据对象的 getter，getter里面会触发Dep.depend，进行依赖收集
-    3. **this.deep**为true，递归去访问 value，触发它所有子项的 getter
-    4. 调用**popTarget()**，把 Dep.target 恢复成上一个状态，因为当前 vm 的数据依赖收集已经完成，那么对应的渲染Dep.target 也需要改变。
-    5. 调用 **cleanupDeps** 方法清除依赖
+    1. 调用`pushTarget(this)`，这里主要为了将`Dep.target` 赋值为当前的渲染 watcher 并压入栈中
+    2. 执行`getter`方法获取到value，这这个过程中会对 vm 上的数据访问，触发了数据对象的 getter，getter里面会触发Dep.depend，进行依赖收集
+    3. `this.deep`为true，递归去访问 value，触发它所有子项的 getter
+    4. 调用`popTarget()`，把 Dep.target 恢复成上一个状态，因为当前 vm 的数据依赖收集已经完成，那么对应的渲染Dep.target 也需要改变。
+    5. 调用 `cleanupDeps` 方法清除依赖
   -触发时机：
     1. watcher初始化的时候
     2. update后
@@ -751,8 +751,8 @@ export default class Watcher {
 - addDep：
   -做了什么：判断new dep 和 dep是否已经存在当前watcher，不存在则添加进去
   -触发时机：
-    在 Object.defineProperty的getter中添加依赖，代码在**src/core/observer/index.js**中，这里会触发**dep**的depend方法.
-    该方法调用**Dep.target.addDep**，也就是watcher的addDep方法
+    在 Object.defineProperty的getter中添加依赖，代码在`src/core/observer/index.js`中，这里会触发`dep`的depend方法.
+    该方法调用`Dep.target.addDep`，也就是watcher的addDep方法
 - cleanupDeps：
   -做了什么：
     1. 清除当前订阅
@@ -765,25 +765,25 @@ export default class Watcher {
     2. 当前是同步，则执行 run方法
     3. 执行queueWatcher方法，将监听到的变化变成队列处理
   -触发时机：
-    1. **$forceUpdate**被调用，代码在**src/core/instance/lifecycle.js**
-    2. **dep**的notify方法触发，代码在**src/core/observer/dep.js**
+    1. `$forceUpdate`被调用，代码在`src/core/instance/lifecycle.js`
+    2. `dep`的notify方法触发，代码在`src/core/observer/dep.js`
 - run：
   -做了什么：满足条件后执行对应的cb
   -触发时机：调用watcher的update后
 - evaluate：
   -做了什么：设置 value，修改dirty
-  -触发时机：**createComputedGetter**创建计算属性的时候，代码在**src/core/instance/state.js**
+  -触发时机：`createComputedGetter`创建计算属性的时候，代码在`src/core/instance/state.js`
 - depend：
   -做了什么：循环deps，并触发每次dep下的depend方法，该方法最后会调用 watcher下的 addDep
-  -触发时机：**createComputedGetter**创建计算属性的时候，代码在**src/core/instance/state.js**
+  -触发时机：`createComputedGetter`创建计算属性的时候，代码在`src/core/instance/state.js`
 - teardown：
     -做了什么：处理watcher，移除dep
     -触发时机：
-      1. **$destroy**的 destroy，beforeDestroy后，destroyed前，代码在**src/core/instance/lifecycle.js**
-      2. **$watch**的unwatchFn，但是没有调用场景，代码在**src/core/instance/state.js**
+      1. `$destroy`的 destroy，beforeDestroy后，destroyed前，代码在`src/core/instance/lifecycle.js`
+      2. `$watch`的unwatchFn，但是没有调用场景，代码在`src/core/instance/state.js`
 
 ### computed
-computed的实现逻辑主要在**src/core/instance/state.js**中，主要看下面几个函数：
+computed的实现逻辑主要在`src/core/instance/state.js`中，主要看下面几个函数：
 ```
 function initComputed (vm: Component, computed: Object) {
   // $flow-disable-line
@@ -878,11 +878,11 @@ function createComputedGetter (key) {
   1. 初始化vm._computedWatchers
   2. 得到computed的get方法
   3. watch监听computed的值
-  4. 调用**defineComputed**
+  4. 调用`defineComputed`
 
 - defineComputed
-  1. 设置当前key的get set方法，get方法根据用户当前设置的get或者调用 **createComputedGetter**
-  2. 调用**Object.defineProperty**监听当前值变化
+  1. 设置当前key的get set方法，get方法根据用户当前设置的get或者调用 `createComputedGetter`
+  2. 调用`Object.defineProperty`监听当前值变化
 
 - createComputedGetter
   1. 数据更新的时候，触发watcher.dirty为true，调用watcher的evaluate重置dirty，并重新计算watcher的value

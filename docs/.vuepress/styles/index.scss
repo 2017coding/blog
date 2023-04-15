@@ -1,6 +1,17 @@
 html{
   font-size: 12px;
 }
+p, ul, ol{
+  line-height: 1.9!important;
+}
+.anchor-right{
+  z-index: 1!important;
+  .anchor-right-content{
+    right: -20rem!important;
+    width: 16rem!important;
+    font-size: 12px!important;
+  }
+}
 .sidebar{
   font-size: 1.1rem;
   &::-webkit-scrollbar {

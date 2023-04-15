@@ -10,7 +10,7 @@
 
 示例，[点这个看该函数详细文档](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy)：
 ```
-/**
+/`
  * target 要使用 Proxy 包装的目标对象（可以是任何类型的对象，包括原生数组，函数，甚至另一个代理）
  * handler 一个通常以函数作为属性的对象，各属性中的函数分别定义了在执行各种操作时代理 p 的行为
  */
@@ -22,7 +22,7 @@ handler 对象有许多方法，而set和get则可以满足对象的拦截：
 // set
 
 const p = new Proxy(target, {
-    /**
+    /`
      * target 目标对象
      * property 将被设置的属性名或 Symbol
      * value 新属性值
@@ -35,7 +35,7 @@ const p = new Proxy(target, {
 // get
 
 const p = new Proxy(target, {
-    /**
+    /`
      * target 目标对象
      * property 将被设置的属性名或 Symbol
      * receiver 最初被调用的对象。通常是 proxy 本身，但 handler 的 set 方法也有可能在原型链上，或以其他方式被间接地调用（因此不一定是 proxy 本身）

@@ -14,7 +14,7 @@
 
 ## 不同盒模型对大小的计算差异
 
-我们先来了解一下**box-sizing**属性：
+我们先来了解一下`box-sizing`属性：
 
 | 值      | 说明 |
 | ----------- | ----------- |
@@ -23,7 +23,7 @@
 注：border-box 不包含 margin。        |
 | inherit   | 指定 box-sizing 属性的值，应该从父元素继承  |
 
-当 **box-sizing: content-box**时，盒子模型为 **标准盒子模型**，当**box-sizing: border-box**时，这种盒子模型称为**IE盒子模型**。
+当 `box-sizing: content-box`时，盒子模型为 `标准盒子模型`，当`box-sizing: border-box`时，这种盒子模型称为`IE盒子模型`。
 
 <!-- ## BFC
 

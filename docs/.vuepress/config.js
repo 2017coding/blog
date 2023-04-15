@@ -39,6 +39,7 @@ export default defineUserConfig({
           { text: 'redis', link: '/service-end/redis/' },
           { text: 'mysql', link: '/service-end/mysql/' },
           { text: 'node', link: '/service-end/node/' },
+          // { text: 'python', link: '/service-end/python/' },
         ]
       },
       { text: '源码解析',
