@@ -22,8 +22,8 @@ export const knowledgeSidear = [
     prefix: 'js',
     collapsable: false,
     children: [
-      'scope',
       'execute-context',
+      'reference-type',
       'this',
       'prototype',
       'closure',
