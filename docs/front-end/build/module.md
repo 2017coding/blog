@@ -404,7 +404,7 @@ require的加载是同步执行的，不能并行加载多个模块。require通
 ## AMD
 有了服务端模块以后，开发者希望客户端也能实现模块化，而且最好两者可以兼容，一个模块都不能修改，在服务端和浏览器端都可以去运行。在浏览器端的模块不能采用`同步加载`，只能用`异步加载`的背景下，AMD规范诞生了。
 
-目前有两个主要的Javascript库实现了AMD规范：[`require.js`](https://requirejs.org/)和[`curl.js`](https://github.com/cujojs/curl)。
+目前有两个主要的JavaScript库实现了AMD规范：[`require.js`](https://requirejs.org/)和[`curl.js`](https://github.com/cujojs/curl)。
 
 `AMD`是"Asynchronous Module Definition"的缩写，意思就是“异步模块定义”，它采用异步方式加载模块，模块的加载不影响它后面语句的运行，所有依赖这个模块的语句都定义在一个回调函数中，等到加载完成之后，这个回调函数才会运行。
 
@@ -552,7 +552,7 @@ define(function(require, exports, module) {
   4. 依赖关系不直观，无法清晰知道当前模块依赖了哪些模块
 
 ## UMD
-`UMD` (Universal Module Definition)，是一种javascript通用模块定义规范，让你的模块能在javascript所有运行环境中发挥作用。
+`UMD` (Universal Module Definition)，是一种JavaScript通用模块定义规范，让你的模块能在JavaScript所有运行环境中发挥作用。
 
 ### 兼容各种规范
 - CommonJS写法：

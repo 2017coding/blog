@@ -30,7 +30,7 @@ export default defineUserConfig({
         children: [
           { text: '知识点', link: '/front-end/knowledge/' },
           { text: 'Typescript', link: '/front-end/ts/' },
-          { text: '浏览器和网络', link: '/front-end/network/' },
+          { text: '浏览器和网络', link: '/front-end/network/browser' },
           { text: '工程化', link: '/front-end/build/module' },
         ]
       },
@@ -39,7 +39,7 @@ export default defineUserConfig({
           { text: 'redis', link: '/service-end/redis/' },
           { text: 'mysql', link: '/service-end/mysql/' },
           { text: 'node', link: '/service-end/node/' },
-          // { text: 'python', link: '/service-end/python/' },
+          { text: 'python', link: '/service-end/python/' },
         ]
       },
       { text: '源码解析',
@@ -48,7 +48,7 @@ export default defineUserConfig({
           { text: 'vue3', link: '/source-code/vue/3.0/design/' },
         ]
       },
-      { text: '运维', link: '/operation-maintenance/' },
+      { text: '运维', link: '/operation-maintenance/docker' },
       { text: 'test', link: '/test/' },
       { text: 'git', link: '/git/git/' },
       { text: 'GitHub', link: 'https://github.com/2017coding' }

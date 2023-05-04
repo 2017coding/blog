@@ -22,11 +22,20 @@ export const knowledgeSidear = [
     prefix: 'js',
     collapsable: false,
     children: [
-      'execute-context.md',
+      'scope',
+      'execute-context',
       'this',
       'prototype',
       'closure',
       'trash-recycling',
+    ]
+  },
+  {
+    text: '其他',
+    prefix: 'other',
+    collapsable: false,
+    children: [
+      'promise',
     ]
   },
 ]
@@ -45,7 +54,7 @@ export const tsSidebar = [
 export const networkSidebar = [
   {
     text: '浏览器和网络',
-    prefix: 'network',
+    prefix: '',
     collapsable: false,
     children: [
       'browser',
@@ -110,9 +119,39 @@ export const vue2Sidebar = [
   },
 ]
 
-export const vue3Sidebar = []
+export const vue3Sidebar = [
+  {
+    text: 'vue',
+    prefix: '',
+    // collapsable: false,
+    children: [
+      'design',
+      'reactive',
+    ]
+  },
+]
 
-export const operationSidebar = []
+export const operationSidebar = [
+  {
+    text: '运维',
+    prefix: '',
+    collapsable: false,
+    children: [
+      'ci-cd',
+      'docker',
+      'nginx',
+    ]
+  },
+  {
+    text: 'CentOS',
+    prefix: 'CentOS',
+    collapsable: false,
+    children: [
+      'cmd',
+      'docker',
+    ]
+  },
+]
 
 export const testSidebar = []
 

@@ -12,11 +12,11 @@
 ### 创建
 
 虚拟dom创建页面的过程分为两步：
-1. 创建Javascript对象，这个对象是基于真实dom的描述；
+1. 创建JavaScript对象，这个对象是基于真实dom的描述；
 2. 递归遍历虚拟DOM树并创建真实DOM。
 
 虚拟dom创建页面计算量：
-创建Javascript对象（vNode） + 创建所有DOM元素。
+创建JavaScript对象（vNode） + 创建所有DOM元素。
 
 innerHTML创建页面计算量：
 渲染HTML字符串 + 新建所有DOM元素
@@ -27,7 +27,7 @@ innerHTML更新页面过程：
 重新构建HTML字符串，重新设置DOM的innerHMTML属性。
 
 虚拟DOM更新页面过程：
-重新创建Javascript对象（虚拟DOM树），然后对比新旧虚拟DOM，找出变化的元素并更新。
+重新创建JavaScript对象（虚拟DOM树），然后对比新旧虚拟DOM，找出变化的元素并更新。
 
 更新时的性能因素：
 虚拟DOM：和数据量的变化有关

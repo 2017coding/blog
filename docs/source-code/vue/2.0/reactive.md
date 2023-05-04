@@ -16,7 +16,7 @@ Object.defineProperty(obj, prop, descriptor)
 ```
 
 #### 对象的属性
-在javascript中，对象的属性分为两种类型：
+在JavaScript中，对象的属性分为两种类型：
 - 数据属性：包含的是一个数据值的位置，在这可以对数据值进行读写
 - 访问器属性：不包含数据值，包含的是一对get和set方法，在读取访问器属性时，在读取访问器属性时，会调用 getter 函数，这个函数负责返回有效的值；在写入访问器属性时，会调用 setter 并传入新值，这个函数负责决定如何处理数据
 
@@ -485,21 +485,21 @@ export function popTarget () {
 ```
 - 初始化设置了一个唯一的id，设置了一个subs订阅列表
 - addSub：
-  -做了什么：每次调用该方法，会往里面添加一条watcher
-  -触发时机：调用watcher的`addDep`
+  - 做了什么：每次调用该方法，会往里面添加一条watcher
+  - 触发时机：调用watcher的`addDep`
 - removeSub：
-  -做了什么：删除一条watcher
-  -触发时机：
+  - 做了什么：删除一条watcher
+  - 触发时机：
     1. watcher调用`teardown`
     2. watcher调用`cleanupDeps`
 - depend：
-  -做了什么：如果当前dep的target存在，调用它的addDep方法
-  -触发时机：
+  - 做了什么：如果当前dep的target存在，调用它的addDep方法
+  - 触发时机：
     1. watcher调用`depend`
     2. Object.defineProperty的`get`
 - notify：
-  -做了什么：开发环境下，如果不是异步需要排序，同时会调用每一个watcher的update方法
-  -触发时机：数据发生改变的时候
+  - 做了什么：开发环境下，如果不是异步需要排序，同时会调用每一个watcher的update方法
+  - 触发时机：数据发生改变的时候
     1. Object.defineProperty的`set`
     2. 调用 `$del`
 
@@ -738,47 +738,47 @@ export default class Watcher {
   10. 设置this.getter方法，
   11. 设置watch的value
 - get：
-  -做了什么：
+  - 做了什么：
     1. 调用`pushTarget(this)`，这里主要为了将`Dep.target` 赋值为当前的渲染 watcher 并压入栈中
     2. 执行`getter`方法获取到value，这这个过程中会对 vm 上的数据访问，触发了数据对象的 getter，getter里面会触发Dep.depend，进行依赖收集
     3. `this.deep`为true，递归去访问 value，触发它所有子项的 getter
     4. 调用`popTarget()`，把 Dep.target 恢复成上一个状态，因为当前 vm 的数据依赖收集已经完成，那么对应的渲染Dep.target 也需要改变。
     5. 调用 `cleanupDeps` 方法清除依赖
-  -触发时机：
+  - 触发时机：
     1. watcher初始化的时候
     2. update后
     3. computed求值的时候
 - addDep：
-  -做了什么：判断new dep 和 dep是否已经存在当前watcher，不存在则添加进去
-  -触发时机：
+  - 做了什么：判断new dep 和 dep是否已经存在当前watcher，不存在则添加进去
+  - 触发时机：
     在 Object.defineProperty的getter中添加依赖，代码在`src/core/observer/index.js`中，这里会触发`dep`的depend方法.
     该方法调用`Dep.target.addDep`，也就是watcher的addDep方法
 - cleanupDeps：
-  -做了什么：
+  - 做了什么：
     1. 清除当前订阅
     2. 把new dep和dep交换
     3. 清除new dep
-  -触发时机：调用watcher的get中
+  - 触发时机：调用watcher的get中
 - update：
-  -做了什么
+  - 做了什么
     1. 判断是否是lazy，是的话则修改dirty
     2. 当前是同步，则执行 run方法
     3. 执行queueWatcher方法，将监听到的变化变成队列处理
-  -触发时机：
+  - 触发时机：
     1. `$forceUpdate`被调用，代码在`src/core/instance/lifecycle.js`
     2. `dep`的notify方法触发，代码在`src/core/observer/dep.js`
 - run：
-  -做了什么：满足条件后执行对应的cb
-  -触发时机：调用watcher的update后
+  - 做了什么：满足条件后执行对应的cb
+  - 触发时机：调用watcher的update后
 - evaluate：
-  -做了什么：设置 value，修改dirty
-  -触发时机：`createComputedGetter`创建计算属性的时候，代码在`src/core/instance/state.js`
+  - 做了什么：设置 value，修改dirty
+  - 触发时机：`createComputedGetter`创建计算属性的时候，代码在`src/core/instance/state.js`
 - depend：
-  -做了什么：循环deps，并触发每次dep下的depend方法，该方法最后会调用 watcher下的 addDep
-  -触发时机：`createComputedGetter`创建计算属性的时候，代码在`src/core/instance/state.js`
+  - 做了什么：循环deps，并触发每次dep下的depend方法，该方法最后会调用 watcher下的 addDep
+  - 触发时机：`createComputedGetter`创建计算属性的时候，代码在`src/core/instance/state.js`
 - teardown：
-    -做了什么：处理watcher，移除dep
-    -触发时机：
+    - 做了什么：处理watcher，移除dep
+    - 触发时机：
       1. `$destroy`的 destroy，beforeDestroy后，destroyed前，代码在`src/core/instance/lifecycle.js`
       2. `$watch`的unwatchFn，但是没有调用场景，代码在`src/core/instance/state.js`
 

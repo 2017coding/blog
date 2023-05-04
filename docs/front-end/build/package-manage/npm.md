@@ -13,9 +13,9 @@ npm由三个不同的组件组成：
 <img src="./image/npm.png" style="width: 80%; padding: 20px;"> -->
 
 ## package.json
-每个javascript项目都可以被当作npm软件包，并且通过package.json来描述项目和软件包的信息，所以package.json是工程化项目必要的一个部分。
+每个JavaScript项目都可以被当作npm软件包，并且通过package.json来描述项目和软件包的信息，所以package.json是工程化项目必要的一个部分。
 
-当使用`npm init`初始化javascript/Node.js项目的时候，会自动生成该文件：
+当使用`npm init`初始化JavaScript/Node.js项目的时候，会自动生成该文件：
 <img src="./image/package.png" style="width: 80%; padding: 20px;">
 
 主要属性：
