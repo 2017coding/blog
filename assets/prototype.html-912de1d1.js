@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-a2814e0a","path":"/front-end/knowledge/js/prototype.html","title":"原型和原型链","lang":"en-US","frontmatter":{},"headers":[],"git":{"updatedTime":1683774219000},"filePathRelative":"front-end/knowledge/js/prototype.md"}');export{e as data};

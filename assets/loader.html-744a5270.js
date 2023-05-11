@@ -1,0 +1,1 @@
+import{_ as a,p as r,q as t,R as e,t as o}from"./framework-69837a10.js";const c={},d=e("h1",{id:"loader",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#loader","aria-hidden":"true"},"#"),o(" loader")],-1),s=[d];function n(_,l){return r(),t("div",null,s)}const h=a(c,[["render",n],["__file","loader.html.vue"]]);export{h as default};

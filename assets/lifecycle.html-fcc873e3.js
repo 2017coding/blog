@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-3628313c","path":"/source-code/vue/2.0/lifecycle.html","title":"生命周期","lang":"en-US","frontmatter":{},"headers":[],"git":{"updatedTime":1681208047000},"filePathRelative":"source-code/vue/2.0/lifecycle.md"}');export{e as data};

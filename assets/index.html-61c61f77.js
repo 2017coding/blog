@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-6229b45f","path":"/front-end/ts/","title":"前言","lang":"en-US","frontmatter":{},"headers":[{"level":2,"title":"如何使用","slug":"如何使用","link":"#如何使用","children":[]}],"git":{"updatedTime":1681554369000},"filePathRelative":"front-end/ts/README.md"}');export{e as data};

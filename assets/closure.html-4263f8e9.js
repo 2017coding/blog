@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-33a66c82","path":"/front-end/knowledge/js/closure.html","title":"闭包","lang":"en-US","frontmatter":{},"headers":[],"git":{"updatedTime":1683162239000},"filePathRelative":"front-end/knowledge/js/closure.md"}');export{e as data};

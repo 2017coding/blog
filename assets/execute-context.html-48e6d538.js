@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-216d8e34","path":"/front-end/knowledge/js/execute-context.html","title":"执行上下文和作用域","lang":"en-US","frontmatter":{},"headers":[{"level":2,"title":"作用域链","slug":"作用域链","link":"#作用域链","children":[]}],"git":{"updatedTime":1683167719000},"filePathRelative":"front-end/knowledge/js/execute-context.md"}');export{e as data};

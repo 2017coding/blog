@@ -1,0 +1,1 @@
+import{_ as t,p as o,q as a,R as e,t as c}from"./framework-69837a10.js";const r={},n=e("h1",{id:"防抖和节流",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#防抖和节流","aria-hidden":"true"},"#"),c(" 防抖和节流")],-1),s=[n];function _(d,h){return o(),a("div",null,s)}const i=t(r,[["render",_],["__file","debounce-throttle.html.vue"]]);export{i as default};

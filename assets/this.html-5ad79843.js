@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-a1fbcb12","path":"/front-end/knowledge/js/this.html","title":"this","lang":"en-US","frontmatter":{},"headers":[{"level":2,"title":"匿名函数的this","slug":"匿名函数的this","link":"#匿名函数的this","children":[]}],"git":{"updatedTime":1681208047000},"filePathRelative":"front-end/knowledge/js/this.md"}');export{t as data};

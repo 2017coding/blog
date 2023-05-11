@@ -1,0 +1,1 @@
+import{_ as t,p as a,q as s,R as e,t as o}from"./framework-69837a10.js";const c={},r=e("h2",{id:"跨域",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#跨域","aria-hidden":"true"},"#"),o(" 跨域")],-1),n=[r];function _(d,i){return a(),s("div",null,n)}const l=t(c,[["render",_],["__file","crossDomain.html.vue"]]);export{l as default};

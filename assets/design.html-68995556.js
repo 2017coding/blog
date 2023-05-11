@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-3c48d36e","path":"/source-code/vue/2.0/design.html","title":"设计","lang":"en-US","frontmatter":{},"headers":[],"git":{"updatedTime":1683774219000},"filePathRelative":"source-code/vue/2.0/design.md"}');export{e as data};

@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-140381fe","path":"/front-end/build/babel.html","title":"babel","lang":"en-US","frontmatter":{},"headers":[],"git":{"updatedTime":1680151098000},"filePathRelative":"front-end/build/babel.md"}');export{e as data};

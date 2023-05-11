@@ -1,0 +1,1 @@
+import{_ as t,p as o,q as n,R as e,t as a}from"./framework-69837a10.js";const c={},d=e("h1",{id:"vnode",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#vnode","aria-hidden":"true"},"#"),a(" vnode")],-1),r=[d];function s(_,i){return o(),n("div",null,r)}const l=t(c,[["render",s],["__file","vnode.html.vue"]]);export{l as default};

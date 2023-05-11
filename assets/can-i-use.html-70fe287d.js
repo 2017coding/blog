@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-08e5bea2","path":"/front-end/knowledge/base/can-i-use.html","title":"代码兼容问题一览","lang":"en-US","frontmatter":{},"headers":[],"git":{"updatedTime":1681208047000},"filePathRelative":"front-end/knowledge/base/can-i-use.md"}');export{e as data};

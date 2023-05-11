@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-a32e8724","path":"/source-code/vue/2.0/vnode.html","title":"vnode","lang":"en-US","frontmatter":{},"headers":[],"git":{"updatedTime":1681306993000},"filePathRelative":"source-code/vue/2.0/vnode.md"}');export{e as data};

@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-00221fea","path":"/front-end/build/cli.html","title":"cli","lang":"en-US","frontmatter":{},"headers":[],"git":{"updatedTime":1680151098000},"filePathRelative":"front-end/build/cli.md"}');export{e as data};

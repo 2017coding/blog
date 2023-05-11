@@ -1,0 +1,1 @@
+import{_ as t,p as a,q as o,R as e,t as c}from"./framework-69837a10.js";const r={},s=e("h1",{id:"模块化",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#模块化","aria-hidden":"true"},"#"),c(" 模块化")],-1),n=[s];function _(d,l){return a(),o("div",null,n)}const h=t(r,[["render",_],["__file","module.html.vue"]]);export{h as default};

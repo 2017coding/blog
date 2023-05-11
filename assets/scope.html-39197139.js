@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-fa4c5dee","path":"/front-end/knowledge/js/scope.html","title":"作用域是什么","lang":"en-US","frontmatter":{},"headers":[{"level":2,"title":"编译原理","slug":"编译原理","link":"#编译原理","children":[]}],"git":{"updatedTime":1683162239000},"filePathRelative":"front-end/knowledge/js/scope.md"}');export{e as data};

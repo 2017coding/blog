@@ -1,0 +1,1 @@
+import{_ as t,p as a,q as c,R as e,t as s}from"./framework-69837a10.js";const n={},r=e("h1",{id:"代码兼容问题一览",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#代码兼容问题一览","aria-hidden":"true"},"#"),s(" 代码兼容问题一览")],-1),o=[r];function _(d,i){return a(),c("div",null,o)}const l=t(n,[["render",_],["__file","can-i-use.html.vue"]]);export{l as default};

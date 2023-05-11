@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-43da0469","path":"/front-end/knowledge/js/module.html","title":"模块化","lang":"en-US","frontmatter":{},"headers":[],"git":{"updatedTime":1681208047000},"filePathRelative":"front-end/knowledge/js/module.md"}');export{e as data};

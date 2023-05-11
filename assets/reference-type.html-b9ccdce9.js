@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-38f01f4e","path":"/front-end/knowledge/js/reference-type.html","title":"Reference Type","lang":"en-US","frontmatter":{},"headers":[],"git":{"updatedTime":1683167719000},"filePathRelative":"front-end/knowledge/js/reference-type.md"}');export{e as data};
