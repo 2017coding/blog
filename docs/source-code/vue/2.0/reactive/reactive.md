@@ -1,4 +1,4 @@
-# vue的响应式（vue2.x）
+# vue的响应式
 
 ## 响应式对象
 ### Object.defineProperty

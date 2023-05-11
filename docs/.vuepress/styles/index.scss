@@ -1,6 +1,12 @@
 html{
   font-size: 12px;
 }
+
+.home .hero img {
+  height: 200px!important;
+  width: 200px;
+  border-radius: 50%;
+}
 p, ul, ol{
   line-height: 1.9!important;
 }

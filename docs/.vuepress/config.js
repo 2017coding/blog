@@ -1,7 +1,7 @@
 import vuepressPluginAnchorRight from 'vuepress-plugin-anchor-right'
 import { defineUserConfig, defaultTheme } from 'vuepress'
 import { knowledgeSidear, tsSidebar, networkSidebar, buildSidebar, redisSidebar,
-  mysqlSidebar, nodeSidebar, vue2Sidebar, vue3Sidebar, operationSidebar, testSidebar, gitSidebar } from './sidebarList'
+  mysqlSidebar, nodeSidebar, vue2Sidebar, vue3Sidebar, algorithmSidebar, operationSidebar, testSidebar, gitSidebar } from './sidebarList'
 // import generateSidebar from './plugins/generateSidebar'
 
 export default defineUserConfig({
@@ -48,6 +48,7 @@ export default defineUserConfig({
           { text: 'vue3', link: '/source-code/vue/3.0/design/' },
         ]
       },
+      { text: '算法', link: '/algorithm/complexity' },
       { text: '运维', link: '/operation-maintenance/docker' },
       { text: 'test', link: '/test/' },
       { text: 'git', link: '/git/git/' },
@@ -63,6 +64,7 @@ export default defineUserConfig({
       '/service-end/node/': createSidebar({prefix: 'service-end/node', sidebarList: nodeSidebar}),
       '/source-code/vue/2.0': createSidebar({prefix: 'source-code/vue/2.0', sidebarList: vue2Sidebar}),
       '/source-code/vue/3.0': createSidebar({prefix: 'source-code/vue/3.0', sidebarList: vue3Sidebar}),
+      '/algorithm/': createSidebar({prefix: 'algorithm', sidebarList: algorithmSidebar}),
       '/operation-maintenance/': createSidebar({prefix: 'operation-maintenance', sidebarList: operationSidebar}),
       '/test/': createSidebar({prefix: 'test', sidebarList: testSidebar}),
       '/git/': createSidebar({prefix: 'git', sidebarList: gitSidebar}),

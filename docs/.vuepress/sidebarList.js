@@ -26,6 +26,8 @@ export const knowledgeSidear = [
       'reference-type',
       'this',
       'prototype',
+      'object',
+      'array',
       'closure',
       'trash-recycling',
     ]
@@ -36,6 +38,7 @@ export const knowledgeSidear = [
     collapsable: false,
     children: [
       'promise',
+      'design-module'
     ]
   },
 ]
@@ -109,24 +112,56 @@ export const nodeSidebar = []
 
 export const vue2Sidebar = [
   {
-    text: 'vue',
+    text: '',
     prefix: '',
     // collapsable: false,
     children: [
       'design',
+    ]
+  },
+  {
+    text: '数据驱动',
+    prefix: 'reactive',
+    children: [
+      'reactive',
+    ]
+  },
+  {
+    text: '编译过程',
+    prefix: 'compiled',
+    children: [
+      '',
+    ]
+  }
+]
+
+export const vue3Sidebar = [
+  {
+    text: '',
+    prefix: '',
+    // collapsable: false,
+    children: [
+      'design',
+    ]
+  },
+  {
+    text: 'reactive',
+    prefix: '',
+    // collapsable: false,
+    children: [
       'reactive',
     ]
   },
 ]
 
-export const vue3Sidebar = [
+export const algorithmSidebar = [
   {
-    text: 'vue',
+    text: '算法',
     prefix: '',
-    // collapsable: false,
+    collapsable: false,
     children: [
-      'design',
-      'reactive',
+      'complexity',
+      'sort'
     ]
   },
 ]
